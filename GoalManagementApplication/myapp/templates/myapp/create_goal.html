@@ -4,14 +4,6 @@
 {% load static%}
 <link rel="stylesheet" href="{% static 'myapp/create_goal.css' %}">
 
-  <div class="page-wrapper">
-    <nav class="side-nav" aria-label="メインナビゲーション">
-      <h2>メニュー</h2>
-      <a href="{% url 'myapp:dashboard' %}">ダッシュボード</a>
-      <a href="{% url 'myapp:create_goal' %}">目標作成</a>
-      <!-- ...existing nav links... -->
-    </nav>
-
     <main class="main-content">
       <div class="card">
         <h1>目標作成</h1>

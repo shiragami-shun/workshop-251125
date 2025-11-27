@@ -24,37 +24,9 @@ body {
     background: var(--page-bg);
 }
 
-.page-wrapper {
-    display: flex;
-    min-height: 100vh;
-    gap: 24px;
-}
-
-/* ナビ: 左側 2/10 = 20% */
-.side-nav {
-    flex: 0 0 20%;
-    background: var(--nav-bg);
-    color: #fff;
-    padding: 24px;
-    box-sizing: border-box;
-    min-height: 100vh;
-}
-
-.side-nav h2 {
-    margin-top: 0;
-    font-size: 1.125rem;
-}
-
-.side-nav a {
-    color: #fff;
-    text-decoration: none;
-    display: block;
-    margin: 8px 0;
-}
-
 /* メイン: 右側 8/10 = 80% */
 .main-content {
-    flex: 1 1 80%;
+    flex: 1 1 100%;
     padding: 32px;
     box-sizing: border-box;
     display: flex;
