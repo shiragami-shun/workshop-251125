@@ -1,0 +1,30 @@
+{% extends "myapp/base.html" %}
+
+{% block title %}目標を削除{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h1>目標を削除しますか？</h1>
+        
+        <div class="card mt-3 border-danger">
+            <div class="card-body">
+                <h5 class="card-title">{{ goal.title }}</h5>
+                <p class="card-text">{{ goal.description }}</p>
+                
+                <div class="alert alert-warning">
+                    <strong>注意:</strong> この操作は元に戻せません。本当に削除してもよろしいですか？
+                </div>
+                
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{% url 'goal_detail' goal.pk %}" class="btn btn-secondary">キャンセル</a>
+                        <button type="submit" class="btn btn-danger">削除する</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

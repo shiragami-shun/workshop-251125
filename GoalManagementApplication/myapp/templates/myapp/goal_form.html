@@ -1,0 +1,68 @@
+{% extends "myapp/base.html" %}
+
+{% block title %}
+    {% if goal %}目標を編集{% else %}新規目標を追加{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h1>{% if goal %}目標を編集{% else %}新規目標を追加{% endif %}</h1>
+        
+        <form method="post" class="mt-4">
+            {% csrf_token %}
+            
+            <div class="form-group mb-3">
+                <label for="{{ form.title.id_for_label }}" class="form-label">目標タイトル</label>
+                {{ form.title }}
+                {% if form.title.errors %}
+                    <div class="invalid-feedback d-block">{{ form.title.errors }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group mb-3">
+                <label for="{{ form.description.id_for_label }}" class="form-label">詳細説明</label>
+                {{ form.description }}
+                {% if form.description.errors %}
+                    <div class="invalid-feedback d-block">{{ form.description.errors }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label for="{{ form.category.id_for_label }}" class="form-label">カテゴリー</label>
+                        {{ form.category }}
+                        {% if form.category.errors %}
+                            <div class="invalid-feedback d-block">{{ form.category.errors }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label for="{{ form.status.id_for_label }}" class="form-label">ステータス</label>
+                        {{ form.status }}
+                        {% if form.status.errors %}
+                            <div class="invalid-feedback d-block">{{ form.status.errors }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group mb-3">
+                <label for="{{ form.target_date.id_for_label }}" class="form-label">目標日</label>
+                {{ form.target_date }}
+                {% if form.target_date.errors %}
+                    <div class="invalid-feedback d-block">{{ form.target_date.errors }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a href="{% url 'goal_list' %}" class="btn btn-secondary">キャンセル</a>
+                <button type="submit" class="btn btn-primary">保存</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

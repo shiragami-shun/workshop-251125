@@ -1,0 +1,40 @@
+{% extends "myapp/base.html" %}
+
+{% block title %}{{ goal.title }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h1>{{ goal.title }}</h1>
+        
+        <div class="card mt-3">
+            <div class="card-body">
+                <h5 class="card-title">詳細情報</h5>
+                
+                <p><strong>説明:</strong></p>
+                <p>{{ goal.description }}</p>
+                
+                <p><strong>カテゴリー:</strong> <span class="badge bg-info">{{ goal.get_category_display }}</span></p>
+                <p><strong>ステータス:</strong> 
+                    <span class="badge {% if goal.status == 'active' %}bg-success{% elif goal.status == 'completed' %}bg-secondary{% else %}bg-danger{% endif %}">
+                        {{ goal.get_status_display }}
+                    </span>
+                </p>
+                
+                {% if goal.target_date %}
+                <p><strong>目標日:</strong> {{ goal.target_date }}</p>
+                {% endif %}
+                
+                <p><strong>作成日:</strong> {{ goal.created_at|date:"Y年m月d日 H:i" }}</p>
+                <p><strong>更新日:</strong> {{ goal.updated_at|date:"Y年m月d日 H:i" }}</p>
+                
+                <div class="mt-4">
+                    <a href="{% url 'goal_update' goal.pk %}" class="btn btn-warning">編集</a>
+                    <a href="{% url 'goal_delete' goal.pk %}" class="btn btn-danger">削除</a>
+                    <a href="{% url 'goal_list' %}" class="btn btn-secondary">一覧に戻る</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

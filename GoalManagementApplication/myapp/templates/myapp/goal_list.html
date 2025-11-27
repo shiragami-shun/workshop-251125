@@ -1,0 +1,47 @@
+{% extends "myapp/base.html" %}
+
+{% block title %}目標一覧{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-8">
+        <h1>目標一覧</h1>
+    </div>
+    <div class="col-md-4 text-end">
+        <a href="{% url 'goal_create' %}" class="btn btn-success">新規目標を追加</a>
+    </div>
+</div>
+
+{% if goals %}
+<div class="row">
+    {% for goal in goals %}
+    <div class="col-md-6 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ goal.title }}</h5>
+                <p class="card-text text-muted">{{ goal.description|truncatewords:20 }}</p>
+                <div class="mb-2">
+                    <span class="badge bg-info">{{ goal.get_category_display }}</span>
+                    <span class="badge {% if goal.status == 'active' %}bg-success{% elif goal.status == 'completed' %}bg-secondary{% else %}bg-danger{% endif %}">
+                        {{ goal.get_status_display }}
+                    </span>
+                </div>
+                {% if goal.target_date %}
+                <p class="card-text"><small class="text-muted">目標日: {{ goal.target_date }}</small></p>
+                {% endif %}
+    
+                    <a href="{% url 'goal_detail' goal.pk %}" class="btn btn-sm btn-primary">詳細</a>
+                    <a href="{% url 'goal_update' goal.pk %}" class="btn btn-sm btn-warning">編集</a>
+                    <a href="{% url 'goal_delete' goal.pk %}" class="btn btn-sm btn-danger">削除</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="alert alert-info" role="alert">
+    目標がまだ登録されていません。<a href="{% url 'goal_create' %}" class="alert-link">新規目標を追加</a>してください。
+</div>
+{% endif %}
+{% endblock %}
