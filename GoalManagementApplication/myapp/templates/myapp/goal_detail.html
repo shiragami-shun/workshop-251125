@@ -1,0 +1,15 @@
+{% extends 'myapp/base.html' %}
+{% block title %}目標の詳細 - {{ goal.title }}{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>{{ goal.title }}</h1>
+  <p>作成者: {{ goal.user.username }}</p>
+  <p>進捗: <strong>{{ goal.progress }}%</strong></p>
+  <p>説明:</p>
+  <div style="white-space:pre-wrap">{{ goal.description }}</div>
+  <p>公開設定: {% if goal.private %}非公開{% else %}公開{% endif %}</p>
+  <p>作成日: {{ goal.created_at }}</p>
+  <p>最終更新: {{ goal.updated_at }}</p>
+  <p><a href="{% url 'myapp:dashboard' %}">&larr; ホームに戻る</a></p>
+</div>
+{% endblock %}

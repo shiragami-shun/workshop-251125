@@ -37,7 +37,7 @@
     {% if others_goals %}
     <ul>
       {% for goal in others_goals %}
-      <li>{{ goal.user.username }}: {{ goal.title }} — {{ goal.progress }}%</li>
+      <li>{{ goal.user.username }}: <a href="{% url 'myapp:goal_detail' goal.pk %}">{{ goal.title }}</a> — {{ goal.progress }}%</li>
       {% endfor %}
     </ul>
     {% else %}
