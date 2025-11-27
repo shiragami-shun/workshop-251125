@@ -1,9 +1,12 @@
+
 from django.urls import path
 from . import views
+
 
 app_name = "myapp"
 
 urlpatterns = [
+    path("", views.root_redirect, name="root_redirect"),
     path("dashboard/", views.dashboard, name="dashboard"),
     path("accounts/signup/", views.signup, name="signup"),
     path("goals/create/", views.create_goal, name="create_goal"),

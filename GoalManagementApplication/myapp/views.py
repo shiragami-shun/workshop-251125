@@ -1,4 +1,9 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
+
+def root_redirect(request):
+	"""ルートURLでログイン画面へリダイレクト"""
+	return redirect(reverse("login"))
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login as auth_login
