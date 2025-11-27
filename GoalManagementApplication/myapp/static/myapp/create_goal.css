@@ -24,21 +24,21 @@ body {
     background: var(--page-bg);
 }
 
-/* メイン: 右側 8/10 = 80% */
+/* 変更: ナビが無い場合のメイン表示を中央寄せに調整 */
 .main-content {
-    flex: 1 1 100%;
-    padding: 32px;
+    display: block;          /* フレックス前提を解除して中央レイアウトに */
+    padding: 48px 24px;
     box-sizing: border-box;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
+    max-width: 1200px;       /* ページ全体の最大幅 */
+    margin: 0 auto;          /* 中央寄せ */
 }
 
+/* card はそのまま白背景で幅を制御 */
 .card {
     width: 100%;
     max-width: 720px;
+    margin: 0 auto;          /* カードを中央へ */
     background: #fff;
-    /* 要素の背景は白 */
     padding: 28px;
     border-radius: 8px;
     box-shadow: 0 6px 18px rgba(20, 20, 30, 0.06);
@@ -72,18 +72,12 @@ form button[type="submit"]:hover {
     opacity: 0.95;
 }
 
-/* レスポンシブ: 狭い画面では縦並び */
+/* レスポンシブ: 狭い画面ではパディングを小さくして可読性を確保 */
 @media (max-width: 800px) {
-    .page-wrapper {
-        flex-direction: column;
-    }
-
-    .side-nav {
-        flex: 0 0 auto;
-        min-height: auto;
-    }
-
     .main-content {
-        padding: 16px;
+        padding: 20px 12px;
+    }
+    .card {
+        padding: 20px;
     }
 }
