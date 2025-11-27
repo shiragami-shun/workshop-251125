@@ -1,0 +1,33 @@
+:root {
+  /* fallback values in case CSS custom properties are disabled */
+}
+:root {
+  --sidebar-width: 20%; /* ナビゲーション幅を2割に設定 */
+  --content-width: 80%; /* 要素は8割 */
+  --sidebar-bg: #e6f0ff; /* 薄い青 */
+  --content-bg: #ffffff; /* 白 */
+  --text-color: #222;
+}
+/* Base font size */
+html { font-size: 16px; }
+html, body, .app-shell { height: 100%; margin: 0; padding: 0; }
+.app-shell { display: flex; min-height: 100vh; font-family: "Noto Sans JP", Arial, sans-serif; }
+.sidebar { width: var(--sidebar-width); min-width: 140px; max-width: 380px; background: var(--sidebar-bg); color: var(--text-color); display: flex; flex-direction: column; justify-content: flex-start; padding: 20px; box-sizing: border-box; }
+.sidebar .logo { font-weight: 700; font-size: 32px; margin-bottom: 24px; }
+.nav-items { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+.nav-items li { margin-bottom: 0; }
+.nav-items a { display: block; width: 100%; color: var(--text-color); text-decoration: none; padding: 12px 14px; border-radius: 6px; box-sizing: border-box; font-size: 24px; }
+.nav-items a:hover { background: rgba(0,0,0,0.05); }
+.sidebar-bottom { font-size: 0.95rem; color: #333; margin-top: auto; }
+.account { padding: 8px 6px; }
+.content { flex: 0 0 var(--content-width); width: var(--content-width); background: var(--content-bg); padding: 28px; box-sizing: border-box; }
+.card { background: white; padding: 16px; border-radius: 6px; box-shadow: 0 1px 6px rgba(0,0,0,0.04); }
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  .app-shell { flex-direction: column; }
+  .sidebar { width: 100%; display: flex; flex-direction: row; align-items: center; justify-content: space-between; }
+  .nav-items { display: flex; gap: 12px; }
+  .content { width: 100%; flex-basis: 100%; flex: 1 1 auto; }
+}
+
