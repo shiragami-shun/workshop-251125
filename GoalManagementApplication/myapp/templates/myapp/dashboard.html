@@ -1,8 +1,8 @@
 {% extends 'myapp/base.html' %}
-{% block title %}ダッシュボード - 目標管理{% endblock %}
+{% block title %}ホーム - 目標管理{% endblock %}
 {% block content %}
 <div class="card">
-  <h1>ダッシュボード</h1>
+  <h1>ホーム</h1>
   {% if user.is_authenticated %}
     <p>ようこそ、{{ user.username }} — <a href="{% url 'logout' %}?next=/">ログアウト</a></p>
   {% else %}
@@ -22,10 +22,10 @@
   </section>
 </div>
 {% endblock %}
-{% block title %}ダッシュボード - 目標管理{% endblock %}
+{% block title %}ホーム - 目標管理{% endblock %}
 {% block content %}
   <div class="card">
-    <h1>ダッシュボード</h1>
+    <h1>ホーム</h1>
     {% if user.is_authenticated %}
       <p>ようこそ、{{ user.username }} — <a href="{% url 'logout' %}?next=/">ログアウト</a></p>
     {% else %}
