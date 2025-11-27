@@ -1,12 +1,26 @@
 {% extends 'myapp/base.html' %}
 {% block title %}目標作成 - 目標管理{% endblock %}
 {% block content %}
-  <div class="card">
-    <h1>目標作成</h1>
-    <form method="post">{% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">作成</button>
-    </form>
-    <p><a href="{% url 'myapp:dashboard' %}">ホームに戻る</a></p>
+{% load static%}
+<link rel="stylesheet" href="{% static 'myapp/create_goal.css' %}">
+
+  <div class="page-wrapper">
+    <nav class="side-nav" aria-label="メインナビゲーション">
+      <h2>メニュー</h2>
+      <a href="{% url 'myapp:dashboard' %}">ダッシュボード</a>
+      <a href="{% url 'myapp:create_goal' %}">目標作成</a>
+      <!-- ...existing nav links... -->
+    </nav>
+
+    <main class="main-content">
+      <div class="card">
+        <h1>目標作成</h1>
+        <form method="post">{% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit">作成</button>
+        </form>
+        <p><a href="{% url 'myapp:dashboard' %}">ホームに戻る</a></p>
+      </div>
+    </main>
   </div>
 {% endblock %}
