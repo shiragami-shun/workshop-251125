@@ -1,0 +1,16 @@
+{% extends 'myapp/base.html' %}
+{% block title %}進捗 - 目標管理{% endblock %}
+{% block content %}
+  <div class="card">
+    <h1>進捗</h1>
+    <p>平均進捗: <strong>{{ my_progress_avg }}%</strong></p>
+    <p>完了している目標数: <strong>{{ completed_count }}</strong></p>
+    <ul>
+      {% for goal in my_goals %}
+      <li>
+        <strong>{{ goal.title }}</strong> — 進捗: {{ goal.progress }}%
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

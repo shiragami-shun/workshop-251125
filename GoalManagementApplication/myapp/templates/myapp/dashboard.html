@@ -1,0 +1,421 @@
+{% extends 'myapp/base.html' %}
+{% block title %}ダッシュボード - 目標管理{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>ダッシュボード</h1>
+  {% if user.is_authenticated %}
+    <p>ようこそ、{{ user.username }} — <a href="{% url 'logout' %}?next=/">ログアウト</a></p>
+  {% else %}
+    <p><a href="{% url 'login' %}">ログイン</a></p>
+  {% endif %}
+  <p><a href="{% url 'myapp:create_goal' %}">新しい目標を作成</a></p>
+  <section>
+    {% if my_goals %}
+      <ul>
+        {% for goal in my_goals %}
+          <li>{{ goal.title }} - {{ goal.progress }}%</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>目標がまだありません。</p>
+    {% endif %}
+  </section>
+</div>
+{% endblock %}
+{% block title %}ダッシュボード - 目標管理{% endblock %}
+{% block content %}
+  <div class="card">
+    <h1>ダッシュボード</h1>
+    {% if user.is_authenticated %}
+      <p>ようこそ、{{ user.username }} — <a href="{% url 'logout' %}?next=/">ログアウト</a></p>
+    {% else %}
+      <p><a href="{% url 'login' %}">ログイン</a></p>
+    {% endif %}
+    <p><a href="{% url 'myapp:create_goal' %}">新しい目標を作成</a></p>
+
+    <div class="container">
+      <section class="card">
+        <h2>自分の目標</h2>
+        {% if my_goals %}
+        <ul>
+          {% for goal in my_goals %}
+          <li class="goal">
+            <strong>{{ goal.title }}</strong>
+            {% if goal.description %}
+              <div>{{ goal.description }}</div>
+            {% endif %}
+            <div class="progress">
+              <div class="bar" style="width:{{ goal.progress }}%"></div>
+            </div>
+            <div>進捗: {{ goal.progress }}%</div>
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p>目標がまだありません。作成してください。</p>
+        {% endif %}
+      </section>
+
+      <section class="card">
+        <h2>進捗のサマリー</h2>
+        <p>平均進捗: <strong>{{ my_progress_avg }}%</strong></p>
+        <p>完了している目標数: <strong>{{ completed_count }}</strong></p>
+      </section>
+
+      <section class="card" style="grid-column: 1 / -1;">
+        <h2>他の人の目標一覧</h2>
+        {% if others_goals %}
+        <ul>
+          {% for goal in others_goals %}
+          <li class="goal">
+            <strong>{{ goal.title }}</strong> — <em>{{ goal.user.username }}</em>
+            <div class="progress">
+              <div class="bar" style="width:{{ goal.progress }}%"></div>
+            </div>
+            <div>進捗: {{ goal.progress }}%</div>
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p>他の人の公開された目標はまだありません。</p>
+        {% endif %}
+      </section>
+    </div>
+  </div>
+{% endblock %}
+{% extends 'myapp/base.html' %}
+{% block title %}ダッシュボード - 目標管理{% endblock %}
+{% block content %}
+  <div class="card">
+    <h1>ダッシュボード</h1>
+    {% if user.is_authenticated %}
+      <p>ようこそ、{{ user.username }} — <a href="{% url 'logout' %}?next=/">ログアウト</a></p>
+    {% else %}
+      <p><a href="{% url 'login' %}">ログイン</a></p>
+    {% endif %}
+    <p><a href="{% url 'myapp:create_goal' %}">新しい目標を作成</a></p>
+
+    <div class="container">
+      <section class="card">
+        <h2>自分の目標</h2>
+        {% if my_goals %}
+        <ul>
+          {% for goal in my_goals %}
+          <li class="goal">
+            <strong>{{ goal.title }}</strong>
+            {% if goal.description %}
+              <div>{{ goal.description }}</div>
+            {% endif %}
+            <div class="progress">
+              <div class="bar" style="width:{{ goal.progress }}%"></div>
+            </div>
+            <div>進捗: {{ goal.progress }}%</div>
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p>目標がまだありません。作成してください。</p>
+        {% endif %}
+      </section>
+
+      <section class="card">
+        <h2>進捗のサマリー</h2>
+        <p>平均進捗: <strong>{{ my_progress_avg }}%</strong></p>
+        <p>完了している目標数: <strong>{{ completed_count }}</strong></p>
+      </section>
+
+      <section class="card" style="grid-column: 1 / -1;">
+        <h2>他の人の目標一覧</h2>
+        {% if others_goals %}
+        <ul>
+          {% for goal in others_goals %}
+          <li class="goal">
+            <strong>{{ goal.title }}</strong> — <em>{{ goal.user.username }}</em>
+            <div class="progress">
+              <div class="bar" style="width:{{ goal.progress }}%"></div>
+            </div>
+            <div>進捗: {{ goal.progress }}%</div>
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p>他の人の公開された目標はまだありません。</p>
+        {% endif %}
+      </section>
+    </div>
+  </div>
+{% endblock %}
+{% extends 'myapp/base.html' %}
+{% block title %}ダッシュボード - 目標管理{% endblock %}
+{% block content %}
+  <div class="card">
+    <h1>ダッシュボード</h1>
+    {% if user.is_authenticated %}
+      <p>ようこそ、{{ user.username }} — <a href="{% url 'logout' %}?next=/">ログアウト</a></p>
+    {% else %}
+      <p><a href="{% url 'login' %}">ログイン</a></p>
+    {% endif %}
+    <p><a href="{% url 'myapp:create_goal' %}">新しい目標を作成</a></p>
+
+    <div class="container">
+      <section class="card">
+        <h2>自分の目標</h2>
+        {% if my_goals %}
+        <ul>
+          {% for goal in my_goals %}
+          <li class="goal">
+            <strong>{{ goal.title }}</strong>
+            {% if goal.description %}
+              <div>{{ goal.description }}</div>
+            {% endif %}
+            <div class="progress">
+              <div class="bar" style="width:{{ goal.progress }}%"></div>
+            </div>
+            <div>進捗: {{ goal.progress }}%</div>
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p>目標がまだありません。作成してください。</p>
+        {% endif %}
+      </section>
+
+      <section class="card">
+        <h2>進捗のサマリー</h2>
+        <p>平均進捗: <strong>{{ my_progress_avg }}%</strong></p>
+        <p>完了している目標数: <strong>{{ completed_count }}</strong></p>
+      </section>
+
+      <section class="card" style="grid-column: 1 / -1;">
+        <h2>他の人の目標一覧</h2>
+        {% if others_goals %}
+        <ul>
+          {% for goal in others_goals %}
+          <li class="goal">
+            <strong>{{ goal.title }}</strong> — <em>{{ goal.user.username }}</em>
+            <div class="progress">
+              <div class="bar" style="width:{{ goal.progress }}%"></div>
+            </div>
+            <div>進捗: {{ goal.progress }}%</div>
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p>他の人の公開された目標はまだありません。</p>
+        {% endif %}
+      </section>
+    </div>
+  </div>
+{% endblock %}
+{% extends 'myapp/base.html' %}
+{% block title %}ダッシュボード - 目標管理{% endblock %}
+{% block content %}
+  <div class="card">
+    <h1>ダッシュボード</h1>
+    {% if user.is_authenticated %}
+      <p>ようこそ、{{ user.username }} — <a href="{% url 'logout' %}?next=/">ログアウト</a></p>
+    {% else %}
+      <p><a href="{% url 'login' %}">ログイン</a></p>
+    {% endif %}
+    <p><a href="{% url 'myapp:create_goal' %}">新しい目標を作成</a></p>
+
+    <div class="container">
+      <section class="card">
+        <h2>自分の目標</h2>
+        {% if my_goals %}
+        <ul>
+          {% for goal in my_goals %}
+          <li class="goal">
+            <strong>{{ goal.title }}</strong>
+            {% if goal.description %}
+              <div>{{ goal.description }}</div>
+            {% endif %}
+            <div class="progress">
+              <div class="bar" style="width:{{ goal.progress }}%"></div>
+            </div>
+            <div>進捗: {{ goal.progress }}%</div>
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p>目標がまだありません。作成してください。</p>
+        {% endif %}
+      </section>
+
+      <section class="card">
+        <h2>進捗のサマリー</h2>
+        <p>平均進捗: <strong>{{ my_progress_avg }}%</strong></p>
+        <p>完了している目標数: <strong>{{ completed_count }}</strong></p>
+      </section>
+
+      <section class="card" style="grid-column: 1 / -1;">
+        <h2>他の人の目標一覧</h2>
+        {% if others_goals %}
+        <ul>
+          {% for goal in others_goals %}
+          <li class="goal">
+            <strong>{{ goal.title }}</strong> — <em>{{ goal.user.username }}</em>
+            <div class="progress">
+              <div class="bar" style="width:{{ goal.progress }}%"></div>
+            </div>
+            <div>進捗: {{ goal.progress }}%</div>
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p>他の人の公開された目標はまだありません。</p>
+        {% endif %}
+      </section>
+    </div>
+  </div>
+{% endblock %}
+{% extends 'myapp/base.html' %}
+{% block title %}ダッシュボード - 目標管理{% endblock %}
+{% block content %}
+  <div class="card">
+    <h1>ダッシュボード</h1>
+    {% if user.is_authenticated %}
+      <p>ようこそ、{{ user.username }} — <a href="{% url 'logout' %}?next=/">ログアウト</a></p>
+    {% else %}
+      <p><a href="{% url 'login' %}">ログイン</a></p>
+    {% endif %}
+    <p><a href="{% url 'myapp:create_goal' %}">新しい目標を作成</a></p>
+
+    <div class="container">
+      <section class="card">
+        <h2>自分の目標</h2>
+        {% if my_goals %}
+        <ul>
+          {% for goal in my_goals %}
+          <li class="goal">
+            <strong>{{ goal.title }}</strong>
+            {% if goal.description %}<div>{{ goal.description }}</div>{% endif %}
+            <div class="progress">
+              <div class="bar" style="width:{{ goal.progress }}%"></div>
+            </div>
+            <div>進捗: {{ goal.progress }}%</div>
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p>目標がまだありません。作成してください。</p>
+        {% endif %}
+      </section>
+
+      <section class="card">
+        <h2>進捗のサマリー</h2>
+        <p>平均進捗: <strong>{{ my_progress_avg }}%</strong></p>
+        <p>完了している目標数: <strong>{{ completed_count }}</strong></p>
+      </section>
+
+      <section class="card" style="grid-column: 1 / -1;">
+        <h2>他の人の目標一覧</h2>
+        {% if others_goals %}
+        <ul>
+          {% for goal in others_goals %}
+          <li class="goal">
+            <strong>{{ goal.title }}</strong> — <em>{{ goal.user.username }}</em>
+            <div class="progress">
+              <div class="bar" style="width:{{ goal.progress }}%"></div>
+            </div>
+            <div>進捗: {{ goal.progress }}%</div>
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p>他の人の公開された目標はまだありません。</p>
+        {% endif %}
+      </section>
+    </div>
+  </div>
+{% endblock %}
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>ダッシュボード - Goal Management</title>
+    <style>
+      body { font-family: Arial, Helvetica, sans-serif; margin: 20px; }
+      .container { display: grid; grid-template-columns: 1fr 1fr; grid-gap: 20px; }
+      .card { padding: 16px; border: 1px solid #ddd; border-radius: 8px; }
+      .progress { background: #f0f0f0; height: 12px; border-radius: 6px; overflow: hidden; }
+      .progress > .bar { height: 100%; background: #4caf50; }
+      h2 { margin-top: 0; }
+      ul { list-style: none; padding-left: 0; }
+      .goal { margin-bottom: 12px; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>ダッシュボード</h1>
+      {% if user.is_authenticated %}
+      <p>ようこそ、{{ user.username }} — <a href="{% url 'logout' %}?next=/">ログアウト</a></p>
+      {% else %}
+      <p><a href="{% url 'login' %}">ログイン</a></p>
+      {% endif %}
+    </header>
+
+    <div>
+      <p><a href="{% url 'myapp:create_goal' %}">新しい目標を作成</a></p>
+    </div>
+    <div class="container">
+      <section class="card">
+        <h2>自分の目標</h2>
+{% extends 'myapp/base.html' %}
+{% block title %}ダッシュボード - 目標管理{% endblock %}
+{% block content %}
+  <div class="card">
+    <h1>ダッシュボード</h1>
+    {% if user.is_authenticated %}
+      <p>ようこそ、{{ user.username }} — <a href="{% url 'logout' %}?next=/">ログアウト</a></p>
+    {% else %}
+      <p><a href="{% url 'login' %}">ログイン</a></p>
+    {% endif %}
+    <p><a href="{% url 'myapp:create_goal' %}">新しい目標を作成</a></p>
+
+    <section>
+      <h2>自分の目標</h2>
+          {% for goal in my_goals %}
+          <li class="goal">
+            <strong>{{ goal.title }}</strong>
+            {% if goal.description %}<div>{{ goal.description }}</div>{% endif %}
+            <div class="progress">
+              <div class="bar" style="width:{{ goal.progress }}%"></div>
+            </div>
+            <div>進捗: {{ goal.progress }}%</div>
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p>目標がまだありません。作成してください。</p>
+        {% endif %}
+      </section>
+
+      <section class="card">
+        <h2>進捗のサマリー</h2>
+        <p>平均進捗: <strong>{{ my_progress_avg }}%</strong></p>
+        <p>完了している目標数: <strong>{{ completed_count }}</strong></p>
+      </section>
+
+      <section class="card" style="grid-column: 1 / -1;">
+        <h2>他の人の目標一覧</h2>
+        {% if others_goals %}
+        <ul>
+          {% for goal in others_goals %}
+          <li class="goal">
+            <strong>{{ goal.title }}</strong> — <em>{{ goal.user.username }}</em>
+            <div class="progress">
+              <div class="bar" style="width:{{ goal.progress }}%"></div>
+            </div>
+            <div>進捗: {{ goal.progress }}%</div>
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p>他の人の公開された目標はまだありません。</p>
+        {% endif %}
+      </section>
+    </div>
+  </body>
+  </html>
+{% endblock %}

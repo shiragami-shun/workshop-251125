@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>{% block title %}目標管理{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'myapp/style.css' %}">
+  </head>
+  <body>
+    <div class="app-shell">
+      <nav class="sidebar">
+        <div class="sidebar-top">
+          <div class="logo">🏁 目標管理</div>
+        </div>
+        <ul class="nav-items">
+          <li><a href="{% url 'myapp:dashboard' %}">ホーム</a></li>
+          <li><a href="{% url 'myapp:create_goal' %}">目標設定</a></li>
+          <li><a href="{% url 'myapp:progress' %}">進捗</a></li>
+        </ul>
+        <div class="sidebar-bottom">
+          {% if user.is_authenticated %}
+            <div class="account">{{ user.username }}</div>
+          {% else %}
+            <div><a href="{% url 'login' %}">ログイン</a></div>
+          {% endif %}
+        </div>
+      </nav>
+
+      <main class="content">
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ログイン</title>
+  </head>
+  <body>
+    <h1>ログイン</h1>
+    {% if form.errors %}
+      <p style="color:red">ログインに失敗しました。もう一度お試しください。</p>
+    {% endif %}
+    <form method="post">{% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">ログイン</button>
+      <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+    <p>まだアカウントをお持ちでないですか？ <a href="{% url 'myapp:signup' %}">アカウント作成</a></p>
+  </body>
+</html>

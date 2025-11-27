@@ -1,0 +1,43 @@
+{% extends 'myapp/base.html' %}
+{% block title %}ダッシュボード - 目標管理{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>ダッシュボード</h1>
+  {% if user.is_authenticated %}
+    <p>ようこそ、{{ user.username }} — <a href="{% url 'logout' %}?next=/">ログアウト</a></p>
+  {% else %}
+    <p><a href="{% url 'login' %}">ログイン</a></p>
+  {% endif %}
+  <p><a href="{% url 'myapp:create_goal' %}">新しい目標を作成</a></p>
+  <section>
+    {% if my_goals %}
+      <ul>
+        {% for goal in my_goals %}
+          <li>{{ goal.title }} - {{ goal.progress }}%</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>目標がまだありません。</p>
+    {% endif %}
+  </section>
+
+  <section class="card">
+    <h2>進捗のサマリー</h2>
+    <p>平均進捗: <strong>{{ my_progress_avg }}%</strong></p>
+    <p>完了している目標数: <strong>{{ completed_count }}</strong></p>
+  </section>
+
+  <section class="card">
+    <h2>他の人の目標一覧</h2>
+    {% if others_goals %}
+    <ul>
+      {% for goal in others_goals %}
+      <li>{{ goal.user.username }}: {{ goal.title }} — {{ goal.progress }}%</li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>他の人の公開された目標はまだありません。</p>
+    {% endif %}
+  </section>
+</div>
+{% endblock %}
