@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
+from django.http import Http404
 
 def root_redirect(request):
 	"""ルートURLでログイン画面へリダイレクト"""
@@ -84,3 +85,16 @@ def progress(request):
 			"completed_count": completed_count,
 		},
 	)
+
+
+@login_required
+def goal_detail(request, pk):
+	"""Show the details for a single goal.
+
+	- If the goal is private and the viewer is not the owner, behave as if it does not exist (404).
+	- Otherwise render the `goal_detail.html` template with the goal.
+	"""
+	goal = get_object_or_404(Goal, pk=pk)
+	if goal.private and goal.user != request.user:
+		raise Http404
+	return render(request, "myapp/goal_detail.html", {"goal": goal})
