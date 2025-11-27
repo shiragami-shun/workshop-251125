@@ -4,7 +4,12 @@
 <div class="card">
   <h1>ホーム</h1>
   {% if user.is_authenticated %}
-    <p>ようこそ、{{ user.username }} — <a href="{% url 'logout' %}?next=/">ログアウト</a></p>
+    <p>ようこそ、{{ user.username }} —
+      <form action="{% url 'logout' %}" method="post" style="display:inline">
+        {% csrf_token %}
+        <button type="submit" style="background:none;border:none;padding:0;color:blue;text-decoration:underline;cursor:pointer;">ログアウト</button>
+      </form>
+    </p>
   {% else %}
     <p><a href="{% url 'login' %}">ログイン</a></p>
   {% endif %}
